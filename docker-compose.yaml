@@ -1,0 +1,10 @@
+version: '3'
+services:
+  # docker-compose run --rm ct-transcriptomics
+  ct-transcriptomics:
+    build: .
+    image: ct-transcriptomics
+    user: "1000:1000"
+    working_dir: "/scratch"
+    volumes:
+      - ".:/scratch"
