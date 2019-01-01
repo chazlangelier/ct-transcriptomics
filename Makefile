@@ -1,3 +1,15 @@
+.PHONY: scratch/test_count_genes
+# used about 30G RAM, 14G disk
+scratch/test_count_genes:
+	mkdir -p $@
+	docker-compose run --rm ct-transcriptomics \
+	 count_genes.py \
+	 s3://jackkamm/ct-transcriptomics/test_count_genes \
+	 s3://czb-seqbot/fastqs/181214_A00111_0242_AHG5HKDSXX/rawdata/Paula_HayakawaSerpa_OPS016/OPS016_CT_Transcriptome_RNA_8hpi-2a_O9_S203_R1_001.fastq.gz \
+	 s3://czb-seqbot/fastqs/181214_A00111_0242_AHG5HKDSXX/rawdata/Paula_HayakawaSerpa_OPS016/OPS016_CT_Transcriptome_RNA_8hpi-2a_O9_S203_R2_001.fastq.gz \
+	 --threads 15 \
+	 --workdir $(@F)
+
 scratch/OPS016_CT_Transcriptome_RNA_8hpi-2a_O9_S203.featureCounts:
 scratch/test_STAR_Unmapped.featureCounts:
 scratch/OPS016_CT_Transcriptome_RNA_8hpi-1a_I9_S191.featureCounts:
@@ -33,10 +45,26 @@ test_star:
 
 scratch/star_genomeGenerate_grch38:
 	mkdir $@
-	docker-compose run --rm star \
+	docker-compose run --rm ct-transcriptomics \
 	 STAR --runThreadN 70 --runMode genomeGenerate --genomeDir $(@F) \
-	 --genomeFastaFiles GCA_000001405.15_GRCh38_no_alt_analysis_set.fna \
-	 --sjdbGTFfile GCA_000001405.15_GRCh38_full_analysis_set.refseq_annotation.gtf
+	 --genomeFastaFiles GRCh38.primary_assembly.genome.fa \
+	 --sjdbGTFfile gencode.v29.primary_assembly.annotation.gtf
+
+scratch/GRCh38.primary_assembly.genome.fa: scratch/GRCh38.primary_assembly.genome.fa.gz
+	gunzip $<
+
+scratch/GRCh38.primary_assembly.genome.fa.gz:
+	cd $(@D) && wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_29/GRCh38.primary_assembly.genome.fa.gz
+
+scratch/gencode.v29.primary_assembly.annotation.gtf:
+	cd $(@D) && wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_29/gencode.v29.primary_assembly.annotation.gtf.gz
+	gunzip $@.gz
+
+scratch/gencode.v29.annotation.gtf: scratch/gencode.v29.annotation.gtf.gz
+	gunzip $<
+
+scratch/gencode.v29.annotation.gtf.gz:
+	cd $(@D) && wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_29/gencode.v29.annotation.gtf.gz
 
 scratch/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna: scratch/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz
 	gunzip $<
