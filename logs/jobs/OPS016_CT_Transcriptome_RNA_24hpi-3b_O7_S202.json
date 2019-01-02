@@ -1,0 +1,18 @@
+{
+    "ResponseMetadata": {
+        "RequestId": "4323df21-0ebe-11e9-bba8-1b711c917d89",
+        "HTTPStatusCode": 200,
+        "HTTPHeaders": {
+            "date": "Wed, 02 Jan 2019 18:43:14 GMT",
+            "content-type": "application/json",
+            "content-length": "105",
+            "connection": "keep-alive",
+            "x-amzn-requestid": "4323df21-0ebe-11e9-bba8-1b711c917d89",
+            "x-amz-apigw-id": "S43qYGCZPHcFhtw=",
+            "x-amzn-trace-id": "Root=1-5c2d0642-ac7f16dc275c89c69afb65e2;Sampled=0"
+        },
+        "RetryAttempts": 0
+    },
+    "jobName": "OPS016_CT_Transcriptome_RNA_24hpi-3b_O7_S202",
+    "jobId": "e9dea31b-8b19-444b-a9f4-226ba0139e8a"
+}
