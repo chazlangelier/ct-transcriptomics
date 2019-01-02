@@ -1,40 +1,9 @@
 version: '3'
 services:
   ct-transcriptomics:
-    image: ct-transcriptomics
+    image: jackkamm/ct-transcriptomics
     build: ./docker
     user: "1000:1000"
-    working_dir: "/scratch"
-    volumes:
-      - "./scratch:/scratch"
-  subread:
-    image: quay.io/biocontainers/subread:1.6.3--ha92aebf_0
-    user: "1000:1000"
-    working_dir: "/scratch"
-    volumes:
-      - "./scratch:/scratch"
-  star:
-    image: alexdobin/star:2.6.1d
-    user: "1000:1000"
-    working_dir: "/scratch"
-    volumes:
-      - "./scratch:/scratch"
-  bwa:
-    image: quay.io/biocontainers/bwa:0.7.17--ha92aebf_3
-    user: "1000:1000"
-    working_dir: "/scratch"
-    volumes:
-      - "./scratch:/scratch"
-  bowtie2:
-    image: quay.io/biocontainers/bowtie2:2.3.4.3--py36h2d50403_0
-    user: "1000:1000"
-    working_dir: "/scratch"
-    volumes:
-      - "./scratch:/scratch"
-  samtools:
-    image: quay.io/biocontainers/samtools:1.9--h8ee4bcc_1
-    user: "1000:1000"
-    stdin_open: true
     working_dir: "/scratch"
     volumes:
       - "./scratch:/scratch"
