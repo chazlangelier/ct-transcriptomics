@@ -1,3 +1,6 @@
+submit_jobs:
+	python submit_jobs.py
+
 submit_test_job:
 	python submit_test_job.py
 
