@@ -1,3 +1,7 @@
+scratch/job_logs:
+	mkdir $@
+	python download_logs.py
+
 submit_jobs:
 	python submit_jobs.py
 
