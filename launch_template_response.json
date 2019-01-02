@@ -1,0 +1,22 @@
+{
+    "LaunchTemplate": {
+        "LaunchTemplateId": "lt-0a088e3d949000151",
+        "LaunchTemplateName": "jackkamm-ct-transcriptomics-template",
+        "CreateTime": "2019-01-02 03:30:09+00:00",
+        "CreatedBy": "arn:aws:iam::423543210473:user/jack.kamm",
+        "DefaultVersionNumber": 1,
+        "LatestVersionNumber": 1
+    },
+    "ResponseMetadata": {
+        "RequestId": "7bf00f66-2ea1-4c08-acef-4cc7d5c409d2",
+        "HTTPStatusCode": 200,
+        "HTTPHeaders": {
+            "content-type": "text/xml;charset=UTF-8",
+            "transfer-encoding": "chunked",
+            "vary": "Accept-Encoding",
+            "date": "Wed, 02 Jan 2019 03:30:09 GMT",
+            "server": "AmazonEC2"
+        },
+        "RetryAttempts": 0
+    }
+}

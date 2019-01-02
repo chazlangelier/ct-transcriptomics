@@ -1,3 +1,6 @@
+launch_template_response.json:
+	python create_launch_template.py > $@
+
 # used about 30G RAM, 20G disk
 scratch/test_count_genes:
 	mkdir -p $@
