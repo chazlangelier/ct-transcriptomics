@@ -1,5 +1,9 @@
-launch_template_response.json:
-	python create_launch_template.py > $@
+submit_test_job:
+	python submit_test_job.py
+
+setup_aws_batch:
+	mkdir -p logs
+	python setup_aws_batch.py
 
 # used about 30G RAM, 20G disk
 scratch/test_count_genes:

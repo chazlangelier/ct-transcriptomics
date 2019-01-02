@@ -1,0 +1,18 @@
+{
+    "ResponseMetadata": {
+        "RequestId": "b75526d9-0e59-11e9-b18b-11fae5900d87",
+        "HTTPStatusCode": 200,
+        "HTTPHeaders": {
+            "date": "Wed, 02 Jan 2019 06:43:30 GMT",
+            "content-type": "application/json",
+            "content-length": "149",
+            "connection": "keep-alive",
+            "x-amzn-requestid": "b75526d9-0e59-11e9-b18b-11fae5900d87",
+            "x-amz-apigw-id": "S3OO2F60PHcFotQ=",
+            "x-amzn-trace-id": "Root=1-5c2c5d92-41401bffe6e01e74108a1445;Sampled=0"
+        },
+        "RetryAttempts": 0
+    },
+    "jobQueueName": "jackkamm-ct-transcriptomics-queue",
+    "jobQueueArn": "arn:aws:batch:us-west-2:423543210473:job-queue/jackkamm-ct-transcriptomics-queue"
+}
