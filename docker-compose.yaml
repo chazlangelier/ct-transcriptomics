@@ -4,6 +4,5 @@ services:
     image: jackkamm/ct-transcriptomics
     build: ./docker
     user: "1000:1000"
-    working_dir: "/scratch"
     volumes:
       - "./scratch:/scratch"

@@ -6,13 +6,16 @@ import boto3
 ec2_client = boto3.client("ec2")
 batch_client = boto3.client("batch")
 
+ec2KeyPair = "jackkamm-czb"
+
 launch_template = "jackkamm-ct-transcriptomics-template"
 compute_environment = "jackkamm-ct-transcriptomics-environment"
 job_queue = "jackkamm-ct-transcriptomics-queue"
 job_definition = "jackkamm-ct-transcriptomics-job-def"
 
 root_volume_size = 2000
-instance_types = ["m4"]
+#instance_types = ["m4", "r4"]
+instance_types = ["optimal"]
 
 job_image = 'jackkamm/ct-transcriptomics'
 job_vcpus = 15
@@ -35,6 +38,7 @@ mkdir -p /scratch
 echo '* soft nofile 1000000' >> /etc/security/limits.d/20-nfile.conf
 echo '* hard nofile 1000000' >> /etc/security/limits.d/20-nfile.conf
 
+yum install -y aws-cli
 aws s3 sync s3://jackkamm/ct-transcriptomics/ /scratch/ --exclude '*' \
     --include 'star_genomeGenerate_grch38*' \
     --include 'GCF_000068585.1_ASM6858v1_genomic.fna*' \
@@ -70,32 +74,34 @@ if True:
 
     print("Creating compute environment...")
     with open("logs/compute_environment.json", "w") as f:
+        compute_resources = {
+            'type': 'SPOT',
+            'minvCpus': 0,
+            'maxvCpus': 256,
+            'instanceTypes': instance_types,
+            'subnets': [
+                # subnets for us-west-2a, us-west-2b, us-west-2c
+                "subnet-672e832e",
+                "subnet-04119a63",
+                "subnet-4347451b",
+            ],
+            'securityGroupIds': [
+                'sg-3195a049',
+            ],
+            "ec2KeyPair": ec2KeyPair,
+            'instanceRole': 'ecsInstanceRole2',
+            'bidPercentage': 100,
+            'spotIamFleetRole': 'arn:aws:iam::423543210473:role/aws-ec2-spot-fleet-role',
+            'launchTemplate': {
+                'launchTemplateName': launch_template
+            }
+        }
         json.dump(
             batch_client.create_compute_environment(
                 computeEnvironmentName=compute_environment,
                 type='MANAGED',
                 state='ENABLED',
-                computeResources={
-                    'type': 'SPOT',
-                    'minvCpus': 0,
-                    'maxvCpus': 256,
-                    'instanceTypes': instance_types,
-                    'subnets': [
-                        # subnets for us-west-2a, us-west-2b, us-west-2c
-                        "subnet-672e832e",
-                        "subnet-04119a63",
-                        "subnet-4347451b",
-                    ],
-                    'securityGroupIds': [
-                        'sg-3195a049',
-                    ],
-                    'instanceRole': 'ecsInstanceRole',
-                    'bidPercentage': 100,
-                    'spotIamFleetRole': 'arn:aws:iam::423543210473:role/aws-ec2-spot-fleet-role',
-                    'launchTemplate': {
-                        'launchTemplateName': launch_template
-                    }
-                },
+                computeResources=compute_resources,
                 serviceRole='arn:aws:iam::423543210473:role/AWSBatchServiceRole'
             ),
             f, default=str, indent=4

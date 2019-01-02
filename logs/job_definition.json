@@ -1,19 +1,19 @@
 {
     "ResponseMetadata": {
-        "RequestId": "0b144a70-0e5c-11e9-af11-d3f4a2abfb9e",
+        "RequestId": "3ed4422c-0e6e-11e9-8f1a-c79c762ec039",
         "HTTPStatusCode": 200,
         "HTTPHeaders": {
-            "date": "Wed, 02 Jan 2019 07:00:09 GMT",
+            "date": "Wed, 02 Jan 2019 09:10:27 GMT",
             "content-type": "application/json",
-            "content-length": "183",
+            "content-length": "185",
             "connection": "keep-alive",
-            "x-amzn-requestid": "0b144a70-0e5c-11e9-af11-d3f4a2abfb9e",
-            "x-amz-apigw-id": "S3QrBGA6PHcF1rQ=",
-            "x-amzn-trace-id": "Root=1-5c2c6179-eb2a18ff3baf8773869ca245;Sampled=0"
+            "x-amzn-requestid": "3ed4422c-0e6e-11e9-8f1a-c79c762ec039",
+            "x-amz-apigw-id": "S3jwiG4_PHcFl5w=",
+            "x-amzn-trace-id": "Root=1-5c2c8003-28fc9b109a072600ab1fecb0;Sampled=0"
         },
         "RetryAttempts": 0
     },
     "jobDefinitionName": "jackkamm-ct-transcriptomics-job-def",
-    "jobDefinitionArn": "arn:aws:batch:us-west-2:423543210473:job-definition/jackkamm-ct-transcriptomics-job-def:2",
-    "revision": 2
+    "jobDefinitionArn": "arn:aws:batch:us-west-2:423543210473:job-definition/jackkamm-ct-transcriptomics-job-def:11",
+    "revision": 11
 }

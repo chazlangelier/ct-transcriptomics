@@ -29,7 +29,7 @@ basename_prefix = os.path.basename(args.out_prefix)
 workdir = args.workdir
 use_tmp_workdir = not workdir
 if use_tmp_workdir:
-    workdir = tempfile.mkdtemp()
+    workdir = tempfile.mkdtemp(dir=".")
 
 try:
     fq_1 = os.path.join(workdir, os.path.basename(args.s3_fq_1))
